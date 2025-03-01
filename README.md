@@ -190,7 +190,103 @@ fun StyledRedButton() {
 ```
 
 ---
+مطمئناً! در اینجا آموزش مربوط به `Column`, `Row`, و `Box` را به جزوه اضافه کرده‌ام:
 
-## نتیجه‌گیری
-در این جلسه، با مقدمات Jetpack Compose آشنا شدیم. یاد گرفتیم که چگونه پروژه را راه‌اندازی کنیم، متن و دکمه ایجاد کنیم و رفتارهای مختلف مانند ثبت لاگ و نمایش Toast را پیاده‌سازی کنیم. همچنین با مفهوم `Modifier` آشنا شدیم که ابزار قدرتمندی برای سفارشی‌سازی UI در Jetpack Compose است. در کنار آن، چند تمرین کاربردی را حل کردیم. در جلسات بعدی، به مباحث پیشرفته‌تر مانند مدیریت وضعیت (State) و لیست‌های پویا می‌پردازیم.
+---
 
+## استفاده از `Column`, `Row`, و `Box` در Jetpack Compose
+
+در Jetpack Compose، برای چیدمان کامپوننت‌ها در رابط کاربری از `Column`, `Row`, و `Box` استفاده می‌کنیم. این ابزارها به ما کمک می‌کنند تا چیدمان‌های مختلفی از اجزای UI را ایجاد کنیم.
+
+---
+
+### `Column`
+`Column` به شما این امکان را می‌دهد که کامپوننت‌ها را به صورت عمودی (در یک ستون) بچینید. از این ویجت زمانی استفاده می‌کنید که بخواهید اجزای UI را در یک ستون به ترتیب عمودی قرار دهید.
+
+**مثال:**
+
+```kotlin
+@Composable
+fun ColumnExample() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "آیتم ۱")
+        Text(text = "آیتم ۲")
+        Text(text = "آیتم ۳")
+    }
+}
+```
+
+در این مثال، سه آیتم متن در یک ستون به ترتیب عمودی قرار می‌گیرند.
+
+---
+
+### `Row`
+برخلاف `Column` که اجزا را عمودی قرار می‌دهد، `Row` برای قرار دادن کامپوننت‌ها به صورت افقی (در یک ردیف) استفاده می‌شود. این ابزار زمانی مفید است که بخواهید اجزای UI را به صورت افقی در یک ردیف قرار دهید.
+
+**مثال:**
+
+```kotlin
+@Composable
+fun RowExample() {
+    Row(modifier = Modifier.padding(16.dp)) {
+        Text(text = "آیتم ۱")
+        Spacer(modifier = Modifier.width(8.dp)) // فاصله بین آیتم‌ها
+        Text(text = "آیتم ۲")
+        Spacer(modifier = Modifier.width(8.dp)) // فاصله بین آیتم‌ها
+        Text(text = "آیتم ۳")
+    }
+}
+```
+
+در اینجا، سه آیتم متن در یک ردیف افقی قرار می‌گیرند، و با استفاده از `Spacer` فاصله بین آیتم‌ها ایجاد شده است.
+
+---
+
+### `Box`
+`Box` به شما این امکان را می‌دهد که چند کامپوننت را روی هم قرار دهید. این ابزار برای ایجاد لایه‌ها و استفاده از ترتیب چیدمان (z-index) بسیار مفید است.
+
+**مثال:**
+
+```kotlin
+@Composable
+fun BoxExample() {
+    Box(modifier = Modifier.size(200.dp)) {
+        Text(text = "پشت زمینه", modifier = Modifier.align(Alignment.Center))
+        Text(
+            text = "جلوی زمینه",
+            modifier = Modifier.align(Alignment.TopStart).padding(16.dp)
+        )
+    }
+}
+```
+
+در این مثال، دو متن روی هم قرار می‌گیرند. یکی از متن‌ها در مرکز و دیگری در بالای چپ قرار دارد.
+
+---
+
+## ترکیب `Column`, `Row`, و `Box` با `Modifier`
+
+با استفاده از `Modifier` می‌توانیم ویژگی‌های اضافی را به چیدمان‌ها اضافه کنیم، مانند فاصله، اندازه، و ترتیب چیدمان.
+
+**مثال ترکیب `Column`, `Row`, و `Box`:**
+
+```kotlin
+@Composable
+fun LayoutExample() {
+    Column(modifier = Modifier.padding(16.dp)) {
+        Row(modifier = Modifier.fillMaxWidth()) {
+            Text(text = "آیتم ۱")
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(text = "آیتم ۲")
+        }
+        Box(modifier = Modifier.fillMaxWidth().padding(top = 16.dp)) {
+            Text(text = "متن در پس‌زمینه", modifier = Modifier.align(Alignment.Center))
+            Text(text = "متن در جلو", modifier = Modifier.align(Alignment.TopStart).padding(16.dp))
+        }
+    }
+}
+```
+
+در این مثال، ابتدا یک `Column` داریم که شامل یک `Row` و یک `Box` است. هر کدام از این ابزارها برای قرار دادن کامپوننت‌ها در مکان‌های مختلف UI استفاده شده‌اند.
+
+---
